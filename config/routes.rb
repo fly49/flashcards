@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get 'cards' => 'cards#show'
   
   resources :cards
   # The priority is based upon order of creation: first created -> highest priority.
