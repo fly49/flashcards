@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.4.4'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.1'
-
+gem 'simple_form'
 gem 'pg'
 
 # Use SCSS for stylesheets
