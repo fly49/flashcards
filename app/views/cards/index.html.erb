@@ -2,14 +2,15 @@
 <div class="container">
   <div class="card-columns">
     <% @cards.each do |card| %>
-      <div class="card text-center" >
-        <div class="card-body">
-          <h5 class="card-title"><h3><%= card.original_text %></h3></h5>
-          <p class="card-text"><%= card.translated_text %></p>
-          <h6 class="card-subtitle mb-2 text-muted"><%= card.review_date.strftime("%d/%m/%Y") %></h6>
-          <%= button_to('Edit card', edit_card_path(card), method: :get, class: 'btn btn-primary')  %>
+      <a href= <%= card_path(card) %> class="custom-card" > 
+        <div class="card text-center" >
+          <div class="card-body">
+            <h5 class="card-title"><h3><%= card.original_text %></h3></h5>
+            <p class="card-text"><%= card.translated_text %></p>
+            <h6 class="card-subtitle mb-2 text-muted"><%= card.review_date.strftime("%d/%m/%Y") %></h6>
+          </div>
         </div>
-      </div>
+      </a>
     <% end %>
   </div>
 </div>
