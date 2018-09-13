@@ -7,6 +7,7 @@
           <h5 class="card-title"><h3><%= card.original_text %></h3></h5>
           <p class="card-text"><%= card.translated_text %></p>
           <h6 class="card-subtitle mb-2 text-muted"><%= card.review_date.strftime("%d/%m/%Y") %></h6>
+          <%= button_to('Edit card', edit_card_path(card), method: :get, class: 'btn btn-primary')  %>
         </div>
       </div>
     <% end %>

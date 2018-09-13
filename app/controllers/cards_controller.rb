@@ -20,12 +20,21 @@ class CardsController < ApplicationController
   end
   
   def update
+    @card = Card.find(params[:id])
+    if @card.update_attributes(card_params)
+      flash.now[:success] = "Card updated!"
+      index
+      render 'index'
+    else
+      render 'edit'
+    end
   end
   
   def show
   end
   
   def edit
+    @card = Card.find(params[:id])
   end
   
   def destoy
