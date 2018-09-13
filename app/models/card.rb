@@ -6,7 +6,9 @@ class Card < ActiveRecord::Base
   before_save :set_review_date
   
   def texts_not_equal
-    errors.add(:translated_text, "can't be the same as original text") if original_text == translated_text
+    if original_text.downcase.strip == translated_text.downcase.strip
+      errors.add(:translated_text, "can't be the same as original text")
+    end
   end
   
   def set_review_date
