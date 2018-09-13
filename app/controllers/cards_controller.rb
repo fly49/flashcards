@@ -11,20 +11,20 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     if @card.save
-      flash.now[:success] = "Card has been succesfully added!"
-      new
+      flash[:success] = "Card has been succesfully added!"
+      redirect_to new_card_url
     else
-      flash.now[:danger] = "Original text and translated text should not be equal!"
+      # Simple form automatically flashes about failing validation
+      # and it need render to throw a hint
+      render 'new'
     end
-    render 'new'
   end
   
   def update
     @card = Card.find(params[:id])
     if @card.update_attributes(card_params)
-      flash.now[:success] = "Card updated!"
-      index
-      render 'index'
+      flash[:success] = "Card updated!"
+      redirect_to cards_url
     else
       render 'edit'
     end
@@ -37,7 +37,10 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
   
-  def destoy
+  def destroy
+    Card.find(params[:id]).destroy
+    flash[:success] = "Card deleted"
+    redirect_to cards_url
   end
   
   private

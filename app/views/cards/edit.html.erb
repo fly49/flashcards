@@ -6,5 +6,10 @@
       <%= f.input :translated_text %>
       <%= f.button :submit, class: 'btn btn-primary' %>
     <% end %>
+    <%= button_to "Delete Card", {  :controller => :cards,
+                               :action => 'destroy', :id => @card.id },
+                               :method => :delete,
+                               data: { confirm: "You sure?" },
+                               class: 'btn btn-primary' %>
   </div>
 </div>
