@@ -3,7 +3,7 @@ class Card < ActiveRecord::Base
   validates :translated_text, presence: true, length: { maximum: 50 }
   validate :texts_not_equal
   
-  before_save :set_review_date
+  before_create :set_review_date
   
   def texts_not_equal
     if original_text.downcase.strip == translated_text.downcase.strip
