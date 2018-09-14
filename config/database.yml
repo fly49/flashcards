@@ -10,6 +10,7 @@ default: &default
   username: admin
   password: admin
   host: localhost
+  template: template0
   pool: 5
   timeout: 5000
 

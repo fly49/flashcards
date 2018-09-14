@@ -4,6 +4,7 @@ ruby '2.4.4'
 gem 'rails', '5.2.1'
 gem 'simple_form'
 gem 'pg'
+gem 'rake', '12.3.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
