@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :cards
-  get "check" => "home#check"
+  resources :cards do
+    get :check, on: :member
+    get "check" => "home#check"
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

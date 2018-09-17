@@ -3,10 +3,14 @@ class Card < ActiveRecord::Base
   validates :translated_text, presence: true, length: { maximum: 50 }
   validate :texts_not_equal
   
-  scope :outdated, lambda { where("review_date =< ?", Date.today ) }
-  scope :random, lambda { offset(rand(Card.count)).first }
+  scope :ready, lambda { where("review_date =< ?", Date.today ) }
+  #scope :random, lambda { offset(rand(Card.count)).first }
 
   before_create :set_review_date
+  
+  def self.random
+    offset(rand(Card.count)).first
+  end
   
   def texts_not_equal
     if original_text.downcase.strip == translated_text.downcase.strip
@@ -15,6 +19,6 @@ class Card < ActiveRecord::Base
   end
   
   def set_review_date(date=(Date.today + 3))
-    update_attribute(:review_date, date)
+    self.review_date = date
   end
 end

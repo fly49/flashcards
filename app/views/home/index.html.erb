@@ -1,15 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 text-center bootstrap-welcome">
+    <div class="col-sm-12 text-center">
       <h1>Welcome to Carder!</h1>
       <p class="lead">Go ahead and learn some words now!</p>
       <div class="card text-center" >
         <div class="card-body">
           <h5 class="card-title"><h3><%= @random_card.translated_text %></h3></h5>
-          <%= form_tag("/check", method: "get") do %>
+          <%= form_tag(check_card_path(@random_card), method: :get) do %>
             <%= label_tag(:translation, "Translation:") %>
             <%= text_field_tag(:translation) %>
-            <%= hidden_field_tag("card_id", @random_card.id) %>
             <%= submit_tag("Check") %>
           <% end %>
           <h6 class="card-subtitle mb-2 text-muted"><%= @random_card.review_date.strftime("%d/%m/%Y") %></h6>

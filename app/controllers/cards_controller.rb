@@ -30,6 +30,17 @@ class CardsController < ApplicationController
     end
   end
   
+  def check
+    find_card
+    if params[:translation] == @card.original_text
+      flash[:success] = "Yes!"
+      update_card_date
+    else
+      flash[:danger] = "No!"
+    end
+    redirect_to root_url
+  end
+  
   def show
   end
   
@@ -50,5 +61,10 @@ class CardsController < ApplicationController
   
   def find_card
     @card = Card.find(params[:id])
+  end
+  
+  def update_card_date
+    @card.set_review_date
+    @card.save
   end
 end
