@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :find_card, only: [:update, :edit, :show, :destroy]
+  before_action :find_card, only: [:update, :edit, :check, :show, :destroy]
   
   def index
     @cards = Card.all
@@ -28,6 +28,15 @@ class CardsController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def check
+    if @card.check_translation(params[:check_data][:translation])
+      flash[:success] = "Yes!"
+    else
+      flash[:danger] = "No!"
+    end
+    redirect_to root_url
   end
   
   def show

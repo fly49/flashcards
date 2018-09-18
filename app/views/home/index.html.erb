@@ -1,29 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 text-center bootstrap-welcome">
-      <h1>Bootstrap 4 Works!</h1>
-      <p class="lead">Go ahead and build your awesome app now.</p>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Launch demo modal
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+    <div class="text-center">
+      <h1>Welcome to Carder!</h1>
+      <p class="lead">Go ahead and learn some words now!</p>
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title"><h3><%= @random_card.translated_text %></h3></h5>
+          <%= simple_form_for :check_data, url: check_card_path(@random_card), method: :get, wrapper: :inline_form, html: { class: "form-inline" } do |f| %>
+              <%= f.input :translation, label: 'Translation', input_html: { class: "mr-sm-2" } %>
+              <%= f.button :submit, "Check", class: 'btn btn-primary' %>
+          <% end %>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @random_card.review_date.strftime("%d/%m/%Y") %></h6>
+        </div>
       </div>
     </div>
   </div>
