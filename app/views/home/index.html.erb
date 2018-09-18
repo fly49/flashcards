@@ -1,15 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 text-center">
+    <div class="text-center">
       <h1>Welcome to Carder!</h1>
       <p class="lead">Go ahead and learn some words now!</p>
-      <div class="card text-center" >
+      <div class="card" >
         <div class="card-body">
           <h5 class="card-title"><h3><%= @random_card.translated_text %></h3></h5>
-          <%= form_tag(check_card_path(@random_card), method: :get) do %>
-            <%= label_tag(:translation, "Translation:") %>
-            <%= text_field_tag(:translation) %>
-            <%= submit_tag("Check") %>
+          <%= simple_form_for :check_data, url: check_card_path(@random_card), method: :get, wrapper: :inline_form, html: { class: "form-inline" } do |f| %>
+              <%= f.input :translation, label: 'Translation', input_html: { class: "mr-sm-2" } %>
+              <%= f.button :submit, "Check", class: 'btn btn-primary' %>
           <% end %>
           <h6 class="card-subtitle mb-2 text-muted"><%= @random_card.review_date.strftime("%d/%m/%Y") %></h6>
         </div>
