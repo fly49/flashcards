@@ -3,13 +3,12 @@ class Card < ActiveRecord::Base
   validates :translated_text, presence: true, length: { maximum: 50 }
   validate :texts_not_equal
   
-  scope :ready, lambda { where("review_date =< ?", Date.today ) }
-  #scope :random, lambda { offset(rand(Card.count)).first }
+  scope :ready, lambda { where("review_date <= ?", Date.today ) }
 
-  before_create :set_review_date
+  before_create lambda { self.review_date = Date.today + 3 }
   
   def self.random
-    offset(rand(Card.count)).first
+    self.order("RANDOM()").first
   end
   
   def texts_not_equal
@@ -18,7 +17,8 @@ class Card < ActiveRecord::Base
     end
   end
   
-  def set_review_date(date=(Date.today + 3))
-    self.review_date = date
+  def update_card_date
+    self.review_date = Date.today + 3
+    self.save
   end
 end

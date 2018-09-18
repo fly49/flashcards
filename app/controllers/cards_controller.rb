@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :find_card, only: [:update, :edit, :show, :destroy]
+  before_action :find_card, only: [:update, :edit, :check, :show, :destroy]
   
   def index
     @cards = Card.all
@@ -31,10 +31,9 @@ class CardsController < ApplicationController
   end
   
   def check
-    find_card
-    if params[:translation] == @card.original_text
+    if params[:check_data][:translation] == @card.original_text
       flash[:success] = "Yes!"
-      update_card_date
+       @card.update_card_date
     else
       flash[:danger] = "No!"
     end
@@ -61,10 +60,5 @@ class CardsController < ApplicationController
   
   def find_card
     @card = Card.find(params[:id])
-  end
-  
-  def update_card_date
-    @card.set_review_date
-    @card.save
   end
 end
