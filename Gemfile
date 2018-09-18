@@ -38,6 +38,7 @@ group :development, :test do
   gem 'byebug'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.8'
+  gem 'database_cleaner'
 end
 
 group :development do
