@@ -59,6 +59,7 @@ describe Card, :type => :model do
   
   describe "self.random" do
     it "returns random record from database" do
+      expect(Card.random).to be_a Card
       expect(Card.random).not_to eq(Card.random)
     end
   end
