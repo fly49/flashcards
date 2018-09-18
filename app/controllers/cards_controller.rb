@@ -31,9 +31,8 @@ class CardsController < ApplicationController
   end
   
   def check
-    if params[:check_data][:translation] == @card.original_text
+    if @card.check_translation(params[:check_data][:translation])
       flash[:success] = "Yes!"
-       @card.update_card_date
     else
       flash[:danger] = "No!"
     end
