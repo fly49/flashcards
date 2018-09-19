@@ -3,9 +3,9 @@ require "rails_helper"
 describe Card do
   describe "scope :ready" do
     before do
-      create(:card).update_attribute(:review_date, Date.today - 1)
-      create(:card).update_attribute(:review_date, Date.today)
-      create(:card).update_attribute(:review_date, Date.today + 1)
+      create(:card, :old)
+      create(:card, :today)
+      create(:card, :new)
     end
     
     it "returns cards with today's review_date or older" do
@@ -15,55 +15,82 @@ describe Card do
   end
   
   describe "check_translation" do
-    before { create(:card) }
+    let(:card) { create(:card) }
     
     context "compare original_text with the given one" do
       it "returns truthy when translation is right" do
-        expect(Card.first.check_translation(Card.first.original_text)).to be_truthy
+        expect(card.check_translation(card.original_text)).to be_truthy
       end
       
       it "returns falsey when it's wrong" do
-        expect(Card.first.check_translation("abcd")).not_to be_truthy
+        expect(card.check_translation("abcd")).not_to be_truthy
       end
     end
   end
   
   describe "text vaildation" do
-    let(:card) { create(:card) }
-    it "validates presence" do
-      expect(card).to be_valid
+    context "presence vaildation" do
+      context "when texts are filled" do
+      let(:correct_card) { create(:card) }
+        it "should be valid" do
+          expect(correct_card).to be_valid
+        end
+      end
+        
+      context "when original text is empty" do
+        let(:card_empty_original) { build(:card, original_text: "", translated_text: "abc") }
+        it "should be not valid" do
+          expect(card_empty_original).not_to be_valid
+        end
+      end
       
-      card.update(original_text: "abc", translated_text: "")
-      expect(card).not_to be_valid
-      
-      card.update(original_text: "", translated_text: "abc")
-      expect(card).not_to be_valid
+      context "when translated text is empty" do
+        let(:card_empty_translated) { build(:card, original_text: "abc", translated_text: "") }
+        it "should not be valid" do
+          expect(card_empty_translated).not_to be_valid
+        end
+      end
     end
 
     context 'when texts are equal' do 
-      card.update(original_text: "abc", translated_text: "abc")
+      let(:card_same_text) { build(:card, original_text: "abc", translated_text: "abc") }
+      
       it "should not be valid" do
-        expect(card).not_to be_valid
+        expect(card_same_text).not_to be_valid
       end
       it "should has an error message" do
-        expect(card.errors.messages).to have_key :translated_text
+        card_same_text.valid?
+        expect(card_same_text.errors.messages).to have_key :translated_text
       end
       
-      card.update(original_text: "  aBCdEF", translated_text: "Abcdef  ")
-      it "should not be valid" do
-        expect(card).not_to be_valid
-      end
-      it "should has an error message" do
-        expect(card.errors.messages).to have_key :translated_text
+      context "even it differs by case and whitespaces" do
+        let(:card_camel_text) { build(:card, original_text: "  aBCdEF", translated_text: "Abcdef  ") }
+        
+        it "should not be valid" do
+          expect(card_camel_text).not_to be_valid
+        end
+        
+        it "should has an error message" do
+          card_camel_text.valid?
+          expect(card_camel_text.errors.messages).to have_key :translated_text
+        end
       end
     end
     
-    it "validates texts length" do
-      card.update(original_text: "a"*21, translated_text: "b")
-      expect(card).not_to be_valid
+    context "texts length validation" do
+      context 'when original text is longer than 20 letters' do
+        let(:card_long_original) { build(:card, original_text: "a"*21, translated_text: "b") }
+        it "should not be valid" do
+          expect(card_long_original).not_to be_valid
+        end
+      end
       
-      card.update(original_text: "a", translated_text: "b"*51)
-      expect(card).not_to be_valid
+      context 'when original text is longer than 50 letters' do
+        let(:card_long_translated) { build(:card, original_text: "a", translated_text: "b"*51) }
+        it "should not be valid" do
+          expect(card_long_translated).not_to be_valid
+        end
+      end
     end
   end
   
