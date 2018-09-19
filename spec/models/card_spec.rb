@@ -1,19 +1,20 @@
 require "rails_helper"
 require 'database_cleaner'
 
-DatabaseCleaner.strategy = :truncation
-
-describe Card, :type => :model do
+describe Card do
   
-  before(:each) do
-    DatabaseCleaner.clean
-  end
+  before(:each) { DatabaseCleaner.clean }
   
   describe "scope :ready" do
-    before { 10.times { create(:card) } }
+    before do
+      create(:card).update_attribute(:review_date, Date.today - 1)
+      create(:card).update_attribute(:review_date, Date.today)
+      create(:card).update_attribute(:review_date, Date.today + 1)
+    end
     
     it "returns cards with today's review_date or older" do
       expect(Card.ready).to all(have_attributes(review_date: (a_value <= Date.today)))
+      expect(Card.ready.all.count).to eq 2
     end
   end
   
@@ -22,55 +23,55 @@ describe Card, :type => :model do
     
     context "compare original_text with the given one" do
       it "returns truthy when translation is right" do
-        expect(Card.find(1).check_translation(Card.find(1).original_text)).to be_truthy
+        expect(Card.first.check_translation(Card.first.original_text)).to be_truthy
       end
       
       it "returns falsey when it's wrong" do
-        expect(Card.find(1).check_translation("abcd")).not_to be_truthy
+        expect(Card.first.check_translation("abcd")).not_to be_truthy
       end
     end
   end
   
   describe "text vaildation" do
+    let(:card) { create(:card) }
     it "validates presence" do
-      card_1 = Card.create(original_text: "abc", translated_text: "")
-      expect(card_1).not_to be_valid
+      expect(card).to be_valid
       
-      card_2 = Card.create(original_text: "", translated_text: "abc")
-      expect(card_2).not_to be_valid
+      card.update(original_text: "abc", translated_text: "")
+      expect(card).not_to be_valid
       
-      card_3 = create(:card)
-      expect(card_3).to be_valid
+      card.update(original_text: "", translated_text: "abc")
+      expect(card).not_to be_valid
     end
     
     it "validates that texts are not equal" do
-      card_1 = Card.create(original_text: "abc", translated_text: "abc")
-      expect(card_1).not_to be_valid
-      expect(card_1.errors.messages).to have_key :translated_text
-      card_2 = Card.create(original_text: "  aBCdEF", translated_text: "Abcdef  ")
-      expect(card_2).not_to be_valid
-      expect(card_2.errors.messages).to have_key :translated_text
+      card.update(original_text: "abc", translated_text: "abc")
+      expect(card).not_to be_valid
+      expect(card.errors.messages).to have_key :translated_text
+      
+      card.update(original_text: "  aBCdEF", translated_text: "Abcdef  ")
+      expect(card).not_to be_valid
+      expect(card.errors.messages).to have_key :translated_text
     end
     
     it "validates texts length" do
-      card_1 = Card.create(original_text: "a"*21, translated_text: "b")
-      expect(card_1).not_to be_valid
+      card.update(original_text: "a"*21, translated_text: "b")
+      expect(card).not_to be_valid
       
-      card_2 = Card.create(original_text: "a", translated_text: "b"*51)
-      expect(card_2).not_to be_valid
+      card.update(original_text: "a", translated_text: "b"*51)
+      expect(card).not_to be_valid
     end
   end
   
   describe "before_create" do
+    let(:card) { create(:card) }
     it "sets review_date to the third day after today's" do
-      card = create(:card)
-      card.save
       expect(card.review_date).to eq (Date.today + 3)
     end
   end
   
   describe "self.random" do
-    before { 10.times { create(:card) } }
+    before { create(:card) }
     it "returns random record from database" do
       expect(Card.random).to be_a Card
     end
