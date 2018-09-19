@@ -8,7 +8,7 @@ class Card < ActiveRecord::Base
   before_create lambda { self.review_date = Date.today + 3 }
   
   def self.random
-    self.order("RANDOM()").first
+    self.order(Arel.sql("RANDOM()")).first
   end
   
   def check_translation(translation)
