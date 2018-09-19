@@ -20,9 +20,5 @@ FactoryBot.define do
         instance.update_attribute(:review_date, Date.today + 1)
       end
     end
-    
-    trait :skip_validate do
-      to_create {|instance| instance.save(validate: false)}
-    end
   end
 end

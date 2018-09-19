@@ -2,15 +2,13 @@ require "rails_helper"
 
 describe Card do
   describe "scope :ready" do
-    before do
-      create(:card, :old)
-      create(:card, :today)
-      create(:card, :new)
-    end
+    let!(:old_card) { create(:card, :old) }
+    let!(:today_card) { create(:card, :today) }
+    let!(:new_card) { create(:card, :new) }
     
     it "returns cards with today's review_date or older" do
       expect(Card.ready).to all(have_attributes(review_date: (a_value <= Date.today)))
-      expect(Card.ready.all.count).to eq 2
+      expect(Card.ready.all).to eq [old_card, today_card]
     end
   end
   
