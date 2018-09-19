@@ -1,10 +1,6 @@
 require "rails_helper"
-require 'database_cleaner'
 
 describe Card do
-  
-  before(:each) { DatabaseCleaner.clean }
-  
   describe "scope :ready" do
     before do
       create(:card).update_attribute(:review_date, Date.today - 1)
@@ -43,15 +39,23 @@ describe Card do
       card.update(original_text: "", translated_text: "abc")
       expect(card).not_to be_valid
     end
-    
-    it "validates that texts are not equal" do
+
+    context 'when texts are equal' do 
       card.update(original_text: "abc", translated_text: "abc")
-      expect(card).not_to be_valid
-      expect(card.errors.messages).to have_key :translated_text
+      it "should not be valid" do
+        expect(card).not_to be_valid
+      end
+      it "should has an error message" do
+        expect(card.errors.messages).to have_key :translated_text
+      end
       
       card.update(original_text: "  aBCdEF", translated_text: "Abcdef  ")
-      expect(card).not_to be_valid
-      expect(card.errors.messages).to have_key :translated_text
+      it "should not be valid" do
+        expect(card).not_to be_valid
+      end
+      it "should has an error message" do
+        expect(card.errors.messages).to have_key :translated_text
+      end
     end
     
     it "validates texts length" do
