@@ -32,9 +32,9 @@ class CardsController < ApplicationController
   
   def check
     if @card.check_translation(params[:check_data][:translation])
-      flash[:success] = "Yes!"
+      flash[:success] = "Right!"
     else
-      flash[:danger] = "No!"
+      flash[:danger] = "Wrong!"
     end
     redirect_to root_url
   end
