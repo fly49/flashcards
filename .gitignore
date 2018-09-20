@@ -19,3 +19,6 @@
 
 # SimpleCov
 /coverage
+
+# Rubocop
+.rubocop.yml
