@@ -17,7 +17,7 @@ class Card < ActiveRecord::Base
   
   def texts_not_equal
     if original_text.downcase.strip == translated_text.downcase.strip
-      errors.add(:translated_text, "can't be the same as original text")
+      errors.add(:translated_text, I18n.t('card.errors.translation_error'))
     end
   end
   

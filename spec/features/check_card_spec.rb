@@ -12,7 +12,7 @@ feature 'Check card' do
         fill_in 'Translation', with: card.original_text
       end
       click_button 'Check'
-      expect(page).to have_content(I18n.t('flashes.successfull_check'))
+      expect(page).to have_content(I18n.t('card.flashes.successfull.check'))
     end
 
     scenario "card shouldn't been checked" do
@@ -20,7 +20,7 @@ feature 'Check card' do
         fill_in 'Translation', with: 'abracadabra'
       end
       click_button 'Check'
-      expect(page).to have_content(I18n.t('flashes.unsuccessfull_check'))
+      expect(page).to have_content(I18n.t('card.flashes.unsuccessfull.check'))
     end
   end
 end
