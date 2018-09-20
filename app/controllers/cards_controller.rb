@@ -12,7 +12,7 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     if @card.save
-      flash[:success] = "Card has been succesfully added!"
+      flash[:success] = 
       redirect_to new_card_url
     else
       # Simple form automatically flashes about failing validation
@@ -23,7 +23,7 @@ class CardsController < ApplicationController
   
   def update
     if @card.update_attributes(card_params)
-      flash[:success] = "Card updated!"
+      flash[:success] = I18n.t('card.flashes.successfull.update')
       redirect_to cards_url
     else
       render 'edit'
@@ -32,9 +32,9 @@ class CardsController < ApplicationController
   
   def check
     if @card.check_translation(params[:check_data][:translation])
-      flash[:success] = "Yes!"
+      flash[:success] = I18n.t('card.flashes.successfull.check')
     else
-      flash[:danger] = "No!"
+      flash[:danger] = I18n.t('card.flashes.unsuccessfull.check')
     end
     redirect_to root_url
   end
@@ -47,7 +47,7 @@ class CardsController < ApplicationController
   
   def destroy
     @card.destroy
-    flash[:success] = "Card deleted"
+    flash[:success] = I18n.t('card.flashes.successfull.destroy')
     redirect_to cards_url
   end
   

@@ -39,6 +39,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.8'
   gem 'database_cleaner'
+  gem 'capybara'
 end
 
 group :development do
@@ -50,3 +51,5 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
+gem 'simplecov', require: false, group: :test
+gem 'rubocop', require: false

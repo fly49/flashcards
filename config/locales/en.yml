@@ -20,4 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  card:
+    flashes:
+        succesfull:
+          check: "Right!"
+          update: "Card updated!"
+          add: "Card has been succesfully added!"
+          destroy: "Card deleted"
+        unsuccessfull:
+          check: "Wrong!"
+    errors:
+      translation: "can't be the same as original text"

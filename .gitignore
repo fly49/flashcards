@@ -16,3 +16,9 @@
 /log/*
 !/log/.keep
 /tmp
+
+# SimpleCov
+/coverage
+
+# Rubocop
+.rubocop.yml
