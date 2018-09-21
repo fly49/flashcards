@@ -6,6 +6,8 @@ gem 'simple_form'
 gem 'pg'
 gem 'rake', '12.3.1'
 gem 'nokogiri'
+gem 'bcrypt'
+gem 'rubocop', require: false
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -34,12 +36,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
+group :test do
   gem 'byebug'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.8'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'rails-controller-testing'
+  gem 'simplecov', require: false, group: :test
+  gem 'faker'
 end
 
 group :development do
@@ -51,5 +57,3 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
-gem 'simplecov', require: false, group: :test
-gem 'rubocop', require: false

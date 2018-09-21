@@ -25,7 +25,7 @@ en:
         succesfull:
           check: "Right!"
           update: "Card updated!"
-          add: "Card has been succesfully added!"
+          create: "Card has been succesfully added!"
           destroy: "Card deleted"
         unsuccessfull:
           check: "Wrong!"
