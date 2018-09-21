@@ -9,8 +9,7 @@ describe User do
     let(:user) { create(:user) }
     
     it { should validate_presence_of(:email) }
-    #it { should validate_uniqueness_of(:email).ignoring_case_sensitivity }
-    it "validates uniqueness of email" do
+    it "should validate that :email is unique" do
       expect(user).to validate_uniqueness_of(:email).ignoring_case_sensitivity
     end
     it { should validate_length_of(:email).is_at_most(100) }
