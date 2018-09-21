@@ -12,7 +12,7 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     if @card.save
-      flash[:success] = 
+      flash[:success] = I18n.t('card.flashes.successfull.create')
       redirect_to new_card_url
     else
       # Simple form automatically flashes about failing validation
