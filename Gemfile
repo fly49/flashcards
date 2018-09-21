@@ -6,6 +6,7 @@ gem 'simple_form'
 gem 'pg'
 gem 'rake', '12.3.1'
 gem 'nokogiri'
+gem 'bcrypt', '3.1.7'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
