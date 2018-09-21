@@ -7,7 +7,7 @@ describe User do
 
   describe 'text vaildation' do
     it { should validate_presence_of(:email) }
-    it { should validate_uniqueness_of(:email).case_insensitive }
+    it { should validate_uniqueness_of(:email).ignoring_case_sensitivity }
     it { should validate_length_of(:email).is_at_most(100) }
     it { should validate_length_of(:password).is_at_least(6) }
 
