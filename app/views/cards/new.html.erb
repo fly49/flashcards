@@ -2,8 +2,9 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= simple_form_for @card do |f| %>
-      <%= f.input :original_text %>
-      <%= f.input :translated_text %>
+      <%= f.input :original_text, input_html: { maxlength: 20 } %>
+      <%= f.input :translated_text, input_html: { maxlength: 50 } %>
+      <%= f.input :transcription, input_html: { maxlength: 20 }, required: false %>
       <%= f.button :submit, class: 'btn btn-primary' %>
     <% end %>
   </div>

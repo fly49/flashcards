@@ -1,0 +1,13 @@
+<%= simple_form_for(:session, url: sessions_path, defaults: { required: false }) do |f| %>
+
+    <%= f.error_notification %>
+
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :remember_me, :as => :boolean %>
+
+    <div class="form-actions">
+    <%= f.submit "Log In", :class => 'btn btn-primary' %>
+    </div>
+<% end %>
+<p>Don't have an account? <%= link_to "Sign up now!", signup_path %> </p>
