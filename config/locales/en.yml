@@ -22,7 +22,7 @@
 en:
   card:
     flashes:
-        succesfull:
+        successfull:
           check: "Right!"
           update: "Card updated!"
           create: "Card has been succesfully added!"
@@ -30,4 +30,15 @@ en:
         unsuccessfull:
           check: "Wrong!"
     errors:
-      translation: "can't be the same as original text"
+      translation_error: "can't be the same as original text"
+  user:
+    flashes:
+        successfull:
+          update: "User updated!"
+          create: "Welcome!"
+  session:
+    flashes:
+      successfull:
+        create: 'Welcome back!'
+      unsuccessfull:
+        create: 'Login failed'
