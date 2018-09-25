@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_23_061628) do
+ActiveRecord::Schema.define(version: 2018_09_23_112959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cards", id: :serial, force: :cascade do |t|
-    t.string "original_text"
-    t.string "translated_text"
+    t.string "original_text", null: false
+    t.string "translated_text", null: false
     t.date "review_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,11 +27,15 @@ ActiveRecord::Schema.define(version: 2018_09_23_061628) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
+    t.string "email", null: false
+    t.string "crypted_password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "salt"
+    t.string "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
 
   add_foreign_key "cards", "users"
