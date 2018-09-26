@@ -36,10 +36,10 @@ feature 'Authentication' do
     let(:user) { create(:user, password: 'abcdef') }
 
     scenario 'successfull log in' do
-      login(user,'abcdef')
+      log_in(user,'abcdef')
       click_link 'Account'
       click_link 'Log out'
-      expect(page).to have_content('Log in')
+      expect(page).to have_selector(:link_or_button, 'Log In')
       expect(page).not_to have_content(user.email)
     end
   end
