@@ -20,25 +20,82 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  simple_form:
+    labels:
+      card:
+        defaults:
+          original_text: 'Original text'
+          translated_text: 'Translated text'
+          transcription: 'Transcription'
+      user:
+        defaults:
+          email: 'Email'
+          password: 'Password'
+          password_confirmation: 'Confirm your password'
+  helpers:
+    submit:
+      user:
+        create: 'Create my account'
+        update: 'Update User'
+      card:
+        new: 'Create Card'
+        update: 'Update Card'
+      check_data:
+        submit: 'Check translation'
   card:
     flashes:
         successfull:
-          check: "Right!"
-          update: "Card updated!"
-          create: "Card has been succesfully added!"
-          destroy: "Card deleted"
+          check: 'Right!'
+          update: 'Card updated!'
+          create: 'Card has been succesfully added!'
+          destroy: 'Card deleted'
         unsuccessfull:
-          check: "Wrong!"
+          check: 'Wrong!'
     errors:
       translation_error: "can't be the same as original text"
   user:
     flashes:
         successfull:
-          update: "User updated!"
-          create: "Welcome!"
+          update: 'User updated!'
+          create: 'Welcome!'
   session:
     flashes:
       successfull:
         create: 'Welcome back!'
       unsuccessfull:
         create: 'Login failed'
+  app_controller:
+    not_authenticated: 'You have to authenticate to access this page'
+  users_controller:
+    new:
+      title: 'Sign up'
+    update:
+      title: 'Edit Card'
+  home_controller:
+    index:
+      greeting:
+        p1: 'Welcome to FlashCarder!'
+        p2: 'Go ahead and learn some words now!'
+      end_message: 'All cards have been viewed'
+  cards_controller:
+    update_title: 'Edit Card'
+    index_title: 'All Cards'
+    new_title: 'Add Card'
+    show:
+      edit: 'Edit'
+      delete: 'Delete'
+  session_controller:
+    login:
+      invite:
+       p1: "Don't have an account?"
+       p2: 'Sign up now!'
+  header:
+    logo: 'FlashCarder'
+    cards: 'Cards'
+    add_card: 'Add Card'
+    all_cards: 'All Cards'
+    account: 'Account'
+    settings: 'Settings'
+    log_out: 'Log out'
+      
+    

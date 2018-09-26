@@ -1,26 +1,26 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "FlashCarder", root_path, id: "logo" %>
+    <%= link_to I18n.t('header.logo'), root_path, id: "logo" %>
     <% if current_user %>
       <%= current_user.email %>
       <nav>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Cards <b class="caret"></b></a>
+            <%= I18n.t('header.cards') %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><%= link_to "Add Card", new_card_path %></li>
-            <li><%= link_to "All Cards", cards_path %></li>
+            <li><%= link_to I18n.t('header.add_card'), new_card_path %></li>
+            <li><%= link_to I18n.t('header.all_cards'), cards_path %></li>
           </ul>
           </li>
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            Account <b class="caret"></b></a>
+            <%= I18n.t('header.account') %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <li><%= link_to I18n.t('header.settings'), edit_user_path(current_user) %></li>
             <li class="divider"></li>
             <li>
-              <%= link_to "Log out", logout_path, method: :get %>
+              <%= link_to I18n.t('header.log_out'), logout_path, method: :get %>
             </li>
           </ul>
           </li>

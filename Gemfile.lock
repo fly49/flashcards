@@ -87,6 +87,8 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
+    i18n-debug (1.1.1)
+      i18n (< 2)
     jaro_winkler (1.5.1)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -266,6 +268,7 @@ DEPENDENCIES
   database_cleaner
   factory_bot_rails
   faker
+  i18n-debug
   jbuilder (~> 2.0)
   jquery-rails
   nokogiri
