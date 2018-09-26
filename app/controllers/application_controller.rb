@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :require_login
 
   def not_authenticated
-    flash[:danger] = 'You have to authenticate to access this page.'
-    redirect_to login_path
+    redirect_to login_path, danger: I18n.t('app_controller.not_authenticated')
   end
 end

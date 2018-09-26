@@ -12,8 +12,7 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.new(card_params)
-    @card.user_id = current_user.id
+    @card = current_user.cards.build(card_params)
     if @card.save
       flash[:success] = I18n.t('card.flashes.successfull.create')
       redirect_to new_card_url
@@ -25,7 +24,7 @@ class CardsController < ApplicationController
   end
 
   def update
-    if @card.update_attributes(card_params)
+    if @card.update(card_params)
       flash[:success] = I18n.t('card.flashes.successfull.update')
       redirect_to cards_url
     else
@@ -60,7 +59,5 @@ class CardsController < ApplicationController
 
   def find_card
     @card = current_user.cards.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_back_or_to root_path
   end
 end
