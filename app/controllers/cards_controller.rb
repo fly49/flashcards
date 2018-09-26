@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 class CardsController < ApplicationController
-  before_action :find_card, only: [:update, :edit, :check, :show, :destroy]
-  
+  before_action :find_card, only: %i[update edit check show destroy]
+
   def index
-    @cards = Card.all
+    @cards = current_user.cards
   end
-  
+
   def new
     @card = Card.new
   end
-  
+
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.build(card_params)
     if @card.save
       flash[:success] = I18n.t('card.flashes.successfull.create')
       redirect_to new_card_url
@@ -20,16 +22,16 @@ class CardsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def update
-    if @card.update_attributes(card_params)
+    if @card.update(card_params)
       flash[:success] = I18n.t('card.flashes.successfull.update')
       redirect_to cards_url
     else
       render 'edit'
     end
   end
-  
+
   def check
     if @card.check_translation(params[:check_data][:translation])
       flash[:success] = I18n.t('card.flashes.successfull.check')
@@ -38,26 +40,26 @@ class CardsController < ApplicationController
     end
     redirect_to root_url
   end
-  
-  def show
-  end
-  
-  def edit
-  end
-  
+
+  def show; end
+
+  def edit; end
+
   def destroy
     @card.destroy
     flash[:success] = I18n.t('card.flashes.successfull.destroy')
     redirect_to cards_url
   end
-  
+
   private
-  
+
   def card_params
     params.require(:card).permit(:original_text, :transcription, :translated_text, :review_date)
   end
-  
+
   def find_card
-    @card = Card.find(params[:id])
+    @card = current_user.cards.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_back_or_to root_path
   end
 end

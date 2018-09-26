@@ -1,7 +1,7 @@
-<h1>Редактировать карточку</h1>
+<h1><%= I18n.t('cards_controller.update_title') %></h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= simple_form_for @card do |f| %>
+    <%= simple_form_for @card, defaults: { required: false } do |f| %>
       <%= f.input :original_text %>
       <%= f.input :translated_text %>
       <%= f.button :submit, class: 'btn btn-primary' %>

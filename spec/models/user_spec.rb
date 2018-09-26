@@ -7,9 +7,9 @@ describe User do
 
   describe 'text vaildation' do
     let(:user) { create(:user) }
-    
+
     it { should validate_presence_of(:email) }
-    it "should validate that :email is unique" do
+    it 'should validate that :email is unique' do
       expect(user).to validate_uniqueness_of(:email).ignoring_case_sensitivity
     end
     it { should validate_length_of(:email).is_at_most(100) }
@@ -23,27 +23,27 @@ describe User do
           build(:user, email: adr)
         end
       end
-      
+
       it 'should be not valid' do
         users_invalid_email.each do |user|
           expect(user).not_to be_valid
         end
       end
     end
-    
+
     context 'when email is typed correctrly' do
-        let(:user_downcase_email) { build(:user, email: 'foo@bar.com') }
-        let(:user_uppercase_email) { build(:user, email: 'FOO@BAR.COM') }
-        
-        it 'should be valid' do
-          expect(user_downcase_email).to be_valid
-          expect(user_uppercase_email).to be_valid
-        end
+      let(:user_downcase_email) { build(:user, email: 'foo@bar.com') }
+      let(:user_uppercase_email) { build(:user, email: 'FOO@BAR.COM') }
+
+      it 'should be valid' do
+        expect(user_downcase_email).to be_valid
+        expect(user_uppercase_email).to be_valid
       end
+    end
   end
-  
-  context "email addresses should be saved as lower-case" do
-    let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
+
+  context 'email addresses should be saved as lower-case' do
+    let(:mixed_case_email) { 'Foo@ExAMPle.CoM' }
     let(:user) { create(:user, email: mixed_case_email) }
     it 'should store email in lower-case' do
       expect(user.email).to eq mixed_case_email.downcase

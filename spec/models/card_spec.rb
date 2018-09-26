@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Card do
   it { should belong_to(:user) }
-  
+
   describe 'scope :ready' do
     let!(:old_card)   { create(:card, :old) }
     let!(:today_card) { create(:card, :today) }

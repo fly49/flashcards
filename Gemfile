@@ -8,6 +8,8 @@ gem 'rake', '12.3.1'
 gem 'nokogiri'
 gem 'bcrypt'
 gem 'rubocop', require: false
+gem 'sorcery'
+gem 'i18n-debug'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
