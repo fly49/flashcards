@@ -5,7 +5,7 @@
       <%= f.input :translated_text, input_html: { maxlength: 50 } %>
       <%= f.input :transcription, input_html: { maxlength: 20 }, required: false %>
       <%= f.file_field :image, required: false %>
-      <%= f.input :remove_image, :as => :boolean unless @card.image.file.nil? %>
+      <%= f.input :remove_image, as: :boolean if @card.image.file %>
       <%= f.button :submit, class: 'btn btn-primary' %>
     <% end %>
   </div>

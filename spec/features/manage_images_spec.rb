@@ -19,7 +19,7 @@ feature 'user can attach image to a card' do
     attach_file("card_image", Rails.root + "spec/fixtures/fuji.jpg")
     click_button 'Update Card'
     expect(page).to have_content(I18n.t('card.flashes.successfull.update'))
-    expect(page).to have_xpath("//img[contains(@src, \"https:\/\/flymypiecardimagebucket.s3.amazonaws.com\")]")
+    expect(page).to have_xpath("//img[contains(@src, \"/uploads/fuji.jpg\")]")
   end
   
   scenario 'user deletes image successfully' do
@@ -29,6 +29,6 @@ feature 'user can attach image to a card' do
     click_button 'Edit'
     find(:css, "#card_remove_image").set(true)
     click_button 'Update Card'
-    expect(page).not_to have_xpath("//img[contains(@src, \"https:\/\/flymypiecardimagebucket.s3.amazonaws.com\")]")
+    expect(page).not_to have_xpath("//img[contains(@src, \"/uploads/fuji.jpg\")]")
   end
 end

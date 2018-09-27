@@ -9,7 +9,6 @@ class Card < ApplicationRecord
 
   before_create lambda { self.review_date = Date.today + 3 }
   
-  attr_accessor :image, :remove_image
   mount_uploader :image, CardImageUploader
   
   def self.random
