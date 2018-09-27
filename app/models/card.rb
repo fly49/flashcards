@@ -9,6 +9,8 @@ class Card < ApplicationRecord
 
   before_create lambda { self.review_date = Date.today + 3 }
   
+  mount_uploader :image, CardImageUploader
+  
   def self.random
     self.order(Arel.sql("RANDOM()")).first
   end

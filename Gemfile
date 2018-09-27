@@ -10,6 +10,11 @@ gem 'bcrypt'
 gem 'rubocop', require: false
 gem 'sorcery'
 gem 'i18n-debug'
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
+gem "fog-aws"
+gem "figaro"
+gem 'travis'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

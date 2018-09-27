@@ -22,3 +22,9 @@
 
 # Rubocop
 .rubocop.yml
+
+# Ignore application configuration
+/config/application.yml
+
+# Ignore tmp uploads
+/public/uploads
