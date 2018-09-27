@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= simple_form_for @card, html: { multipart: true } do |f| %>
+      <%= f.input :original_text, input_html: { maxlength: 20 } %>
+      <%= f.input :translated_text, input_html: { maxlength: 50 } %>
+      <%= f.input :transcription, input_html: { maxlength: 20 }, required: false %>
+      <%= f.file_field :image, required: false %>
+      <%= f.input :remove_image, :as => :boolean unless @card.image.file.nil? %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
