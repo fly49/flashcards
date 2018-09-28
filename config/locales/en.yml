@@ -22,16 +22,15 @@
 en:
   simple_form:
     labels:
-      card:
-        defaults:
-          original_text: 'Original text'
-          translated_text: 'Translated text'
-          transcription: 'Transcription'
-      user:
-        defaults:
-          email: 'Email'
-          password: 'Password'
-          password_confirmation: 'Confirm your password'
+      defaults:
+        original_text: 'Original text'
+        translated_text: 'Translated text'
+        transcription: 'Transcription'
+        image: 'Attach an image to the card'
+        decks: 'Select a deck for the card'
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Confirm your password'
   helpers:
     submit:
       user:
@@ -97,5 +96,3 @@ en:
     account: 'Account'
     settings: 'Settings'
     log_out: 'Log out'
-      
-    

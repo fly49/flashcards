@@ -1,5 +1,6 @@
 class Card < ApplicationRecord
   belongs_to :user
+  has_and_belongs_to_many :decks
   
   validates :original_text, presence: true, length: { maximum: 20 }
   validates :translated_text, presence: true, length: { maximum: 50 }
