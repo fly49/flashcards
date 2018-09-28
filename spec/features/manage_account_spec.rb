@@ -11,7 +11,7 @@ feature 'user can change his email and password' do
     click_link 'Settings'
     fill_in 'Email', with: 'new@mail.com'
     fill_in 'Password', with: 'new_password'
-    fill_in 'Password confirmation', with: 'new_password'
+    fill_in 'Confirm your password', with: 'new_password'
     click_button 'Update User'
     expect(page).to have_content(I18n.t('user.flashes.successfull.update'))
     expect(page).to have_content('new@mail.com')

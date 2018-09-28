@@ -13,7 +13,7 @@ feature 'Authentication' do
       expect(page).to have_content('Sign up')
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
-      fill_in 'Password confirmation', with: user.password
+      fill_in 'Confirm your password', with: user.password
       click_button 'Create my account'
       expect(page).to have_content(I18n.t('user.flashes.successfull.create'))
       expect(page).to have_content(user.email)
