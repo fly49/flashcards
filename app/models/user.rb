@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6 }, confirmation: true
+  validates :password, length: { minimum: 6 }, confirmation: true, if: -> {new_record? || changes[:crypted_password]}
   validates :current_deck, presence: true, on: :update
   
   def downcase_email
@@ -19,6 +19,7 @@ class User < ApplicationRecord
   
   def add_basic_deck
     basic_deck = Deck.create(name:'Basic', user_id: self.id)
-    self.decks << (self.current_deck = basic_deck)
+    self.update(current_deck: basic_deck)
+    self.decks << basic_deck
   end
 end
