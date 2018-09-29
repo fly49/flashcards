@@ -7,6 +7,6 @@ class HomeController < ApplicationController
     return unless current_user
 
     @user = User.find(current_user.id)
-    @random_card = @user.cards.ready.random
+    @random_card = @user.current_deck.cards.ready.random
   end
 end
