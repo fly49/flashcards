@@ -45,6 +45,8 @@ en:
     flashes:
         successfull:
           create: 'Deck has been succesfully created!'
+          update: 'Deck renamed'
+          destroy: 'Deck deleted'
   card:
     flashes:
         successfull:
@@ -88,6 +90,10 @@ en:
       edit: 'Edit'
       delete: 'Delete'
   decks_controller:
+    update: 'Rename'
+    delete: 'Delete'
+    make_current: 'Make Current'
+    already_current: 'Current'
     index_title: 'All Decks'
     new_title: 'Create Deck'
     count: 'Number of Cards'

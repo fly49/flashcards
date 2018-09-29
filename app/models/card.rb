@@ -4,7 +4,6 @@ class Card < ApplicationRecord
   
   validates :original_text, presence: true, length: { maximum: 20 }
   validates :translated_text, presence: true, length: { maximum: 50 }
-  #validates :decks, presence: true
   validate :texts_not_equal
   validate :has_one_deck_at_least
   
