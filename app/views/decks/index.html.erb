@@ -1,0 +1,15 @@
+<h1><%= I18n.t('decks_controller.index_title') %></h1>
+<div class="container">
+  <div class="card-columns">
+    <% @decks.each do |deck| %>
+      <a href= <%= deck_path(deck) %> class="custom-card" > 
+        <div class="card text-center" >
+          <div class="card-body">
+            <h5 class="card-title"><h3><%= deck.name %></h3></h5>
+            <p class="card-text"><%= "#{I18n.t('decks_controller.count')}: #{deck.cards.count}" %></p>
+          </div>
+        </div>
+      </a>
+    <% end %>
+  </div>
+</div>

@@ -4,7 +4,7 @@
       <%= f.input :original_text, input_html: { maxlength: 20 } %>
       <%= f.input :translated_text, input_html: { maxlength: 50 } %>
       <%= f.input :transcription, input_html: { maxlength: 20 }, required: false %>
-      <%= f.association :decks, collection: current_user.decks, :value => current_user.decks.name %>
+      <%= f.association :decks, collection: current_user.decks, include_blank: true, as: :check_boxes %>
       <%= f.label :image, required: false %>
       <%= f.file_field :image, required: false %>
       <%= f.input :remove_image, as: :boolean if @card.image.file %>

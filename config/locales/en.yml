@@ -27,7 +27,7 @@ en:
         translated_text: 'Translated text'
         transcription: 'Transcription'
         image: 'Attach an image to the card'
-        decks: 'Select a deck for the card'
+        decks: 'Select at least one deck for the card'
         email: 'Email'
         password: 'Password'
         password_confirmation: 'Confirm your password'
@@ -83,6 +83,9 @@ en:
     show:
       edit: 'Edit'
       delete: 'Delete'
+  decks_controller:
+    index_title: 'All Decks'
+    count: 'Number of Cards'
   session_controller:
     login:
       invite:
@@ -91,6 +94,7 @@ en:
   header:
     logo: 'FlashCarder'
     cards: 'Cards'
+    decks: 'Decks'
     add_card: 'Add Card'
     all_cards: 'All Cards'
     account: 'Account'
