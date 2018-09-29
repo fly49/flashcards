@@ -41,6 +41,10 @@ en:
         update: 'Update Card'
       check_data:
         submit: 'Check translation'
+  deck:
+    flashes:
+        successfull:
+          create: 'Deck has been succesfully created!'
   card:
     flashes:
         successfull:
@@ -85,6 +89,7 @@ en:
       delete: 'Delete'
   decks_controller:
     index_title: 'All Decks'
+    new_title: 'Create Deck'
     count: 'Number of Cards'
   session_controller:
     login:
@@ -97,6 +102,8 @@ en:
     decks: 'Decks'
     add_card: 'Add Card'
     all_cards: 'All Cards'
+    create_deck: 'Create Deck'
+    all_decks: 'All Decks'
     account: 'Account'
     settings: 'Settings'
     log_out: 'Log out'
