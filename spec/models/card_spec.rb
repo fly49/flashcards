@@ -4,11 +4,13 @@ require 'rails_helper'
 
 describe Card do
   it { should belong_to(:user) }
+  
+  let(:user) { create(:user, password: 'abcdef') }
 
   describe 'scope :ready' do
-    let!(:old_card)   { create(:card, :old) }
-    let!(:today_card) { create(:card, :today) }
-    let!(:new_card)   { create(:card, :new) }
+    let!(:old_card)   { create(:card, :old, user_id: user.id) }
+    let!(:today_card) { create(:card, :today, user_id: user.id) }
+    let!(:new_card)   { create(:card, :new, user_id: user.id) }
 
     it "returns cards with today's review_date or older" do
       expect(Card.ready).to all(have_attributes(review_date: (a_value <= Date.today)))
@@ -17,7 +19,7 @@ describe Card do
   end
 
   describe 'check_translation' do
-    let(:card) { create(:card) }
+    let(:card) { create(:card, user_id: user.id) }
 
     context 'compare original_text with the given one' do
       it 'returns truthy when translation is right' do
@@ -31,23 +33,24 @@ describe Card do
   end
 
   describe 'text vaildation' do
+    
     context 'presence vaildation' do
       context 'when texts are filled' do
-        let(:correct_card) { create(:card) }
+        let(:correct_card) { create(:card, user_id: user.id) }
         it 'should be valid' do
           expect(correct_card).to be_valid
         end
       end
 
       context 'when original text is empty' do
-        let(:card_empty_original) { build(:card, original_text: '', translated_text: 'abc') }
+        let(:card_empty_original) { build(:card, original_text: '', translated_text: 'abc', user_id: user.id) }
         it 'should be not valid' do
           expect(card_empty_original).not_to be_valid
         end
       end
 
       context 'when translated text is empty' do
-        let(:card_empty_translated) { build(:card, original_text: 'abc', translated_text: '') }
+        let(:card_empty_translated) { build(:card, original_text: 'abc', translated_text: '', user_id: user.id) }
         it 'should not be valid' do
           expect(card_empty_translated).not_to be_valid
         end
@@ -55,7 +58,7 @@ describe Card do
     end
 
     context 'when texts are equal' do
-      let(:card_same_text) { build(:card, original_text: 'abc', translated_text: 'abc') }
+      let(:card_same_text) { build(:card, original_text: 'abc', translated_text: 'abc', user_id: user.id) }
 
       it 'should not be valid' do
         expect(card_same_text).not_to be_valid
@@ -66,7 +69,7 @@ describe Card do
       end
 
       context 'even it differs by case and whitespaces' do
-        let(:card_camel_text) { build(:card, original_text: '  aBCdEF', translated_text: 'Abcdef  ') }
+        let(:card_camel_text) { build(:card, original_text: '  aBCdEF', translated_text: 'Abcdef  ', user_id: user.id) }
 
         it 'should not be valid' do
           expect(card_camel_text).not_to be_valid
@@ -81,14 +84,14 @@ describe Card do
 
     context 'texts length validation' do
       context 'when original text is longer than 20 letters' do
-        let(:card_long_original) { build(:card, original_text: 'a' * 21, translated_text: 'b') }
+        let(:card_long_original) { build(:card, original_text: 'a' * 21, translated_text: 'b', user_id: user.id) }
         it 'should not be valid' do
           expect(card_long_original).not_to be_valid
         end
       end
 
       context 'when original text is longer than 50 letters' do
-        let(:card_long_translated) { build(:card, original_text: 'a', translated_text: 'b' * 51) }
+        let(:card_long_translated) { build(:card, original_text: 'a', translated_text: 'b' * 51, user_id: user.id) }
         it 'should not be valid' do
           expect(card_long_translated).not_to be_valid
         end
@@ -97,14 +100,14 @@ describe Card do
   end
 
   describe 'before_create' do
-    let(:card) { create(:card) }
+    let(:card) { create(:card, user_id: user.id) }
     it "sets review_date to the third day after today's" do
       expect(card.review_date).to eq(Date.today + 3)
     end
   end
 
   describe 'self.random' do
-    before { create(:card) }
+    before { create(:card, user_id: user.id) }
     it 'returns random record from database' do
       expect(Card.random).to be_a Card
     end

@@ -12,6 +12,7 @@ feature 'manage cards' do
       click_link 'Add Card'
       fill_in 'Original text', with: 'word'
       fill_in 'Translated text', with: 'translation'
+      page.check('Basic')
       click_button 'Create Card'
       expect(page).to have_content(I18n.t('card.flashes.successfull.create'))
       click_link 'Cards'

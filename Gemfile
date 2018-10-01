@@ -53,6 +53,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'simplecov', require: false, group: :test
   gem 'faker'
+  gem 'timecop'
 end
 
 group :development do

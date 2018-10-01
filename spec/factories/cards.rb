@@ -3,6 +3,7 @@ FactoryBot.define do
     original_text { random_text }
     translated_text { random_text }
     user_id { nil }
+    deck_ids { [User.find(user_id).current_deck.id] }
 
     trait :old do
       after(:create) do |instance|

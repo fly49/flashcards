@@ -52,6 +52,8 @@ class DecksController < ApplicationController
   
   def find_deck
     @deck = current_user.decks.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_back_or_to root_path
   end
 
   def deck_params
