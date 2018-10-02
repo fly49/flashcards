@@ -16,5 +16,6 @@ test:
   <<: *default
   database: flashcards_db_test
 
-#production:
-# <<: *default
+production:
+  <<: *default
+  database: flashcards_db
