@@ -60,7 +60,5 @@ class CardsController < ApplicationController
 
   def find_card
     @card = current_user.cards.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_back_or_to root_path
   end
 end

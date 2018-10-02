@@ -1,10 +1,6 @@
 <h1><%= "#{@deck.name} Deck" %></h1>
 <div class="container">
   <div class="card-columns">
-    <% @cards.each do |c| %>
-      <a href= <%= card_path(c) %> class="custom-card" > 
-        <%= render partial: 'cards/content', locals: {card: c} %>
-      </a>
-    <% end %>
+    <%= render :partial => "cards/card", :collection => @cards %>
   </div>
 </div>

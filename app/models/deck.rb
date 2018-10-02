@@ -7,6 +7,6 @@ class Deck < ApplicationRecord
   validates :user, presence: true
   
   def current?
-    self.id == self.user.current_deck.id
+    id == user.current_deck.id
   end
 end

@@ -17,6 +17,7 @@ class DecksController < ApplicationController
   
   def create
     @deck = current_user.decks.build(deck_params)
+    @deck.user_id = current_user.id
     if @deck.save
       flash[:success] = I18n.t('deck.flashes.successfull.create')
       redirect_to decks_path
@@ -42,7 +43,7 @@ class DecksController < ApplicationController
   end
   
   def make_current
-    current_user.update(current_deck: @deck)
+    current_user.update!(current_deck: @deck)
     redirect_to decks_path
   end
   
@@ -52,11 +53,9 @@ class DecksController < ApplicationController
   
   def find_deck
     @deck = current_user.decks.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_back_or_to root_path
   end
 
   def deck_params
-    params.require(:deck).permit(:name, :user_id)
+    params.require(:deck).permit(:name)
   end
 end

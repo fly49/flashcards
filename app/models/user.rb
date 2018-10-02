@@ -19,7 +19,11 @@ class User < ApplicationRecord
   
   def add_basic_deck
     basic_deck = Deck.create(name:'Basic', user_id: self.id)
-    self.update(current_deck: basic_deck)
+    update!(current_deck: basic_deck)
     self.decks << basic_deck
+  end
+  
+  def get_card_for_check
+    self.current_deck.cards.ready.random
   end
 end

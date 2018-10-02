@@ -23,7 +23,7 @@ feature 'manage cards' do
 
   context 'check card' do
     let(:user) { create(:user, password: 'abcdef') }
-    let(:card) { create(:card, :old, user_id: user.id) }
+    let(:card) { create(:card, :old, user: user) }
     before(:each) do
       log_in(user,'abcdef')
       card
@@ -48,7 +48,7 @@ feature 'manage cards' do
 
   context 'manage specific card' do
     let(:user) { create(:user, password: 'abcdef') }
-    let(:card) { create(:card, user_id: user.id) }
+    let(:card) { create(:card, user: user) }
 
     before(:each) do
       log_in(user,'abcdef')

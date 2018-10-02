@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 feature 'manage decks' do
+  let(:user) { create(:user, password: 'abcdef') }
+  
   before(:each) do
-    user = create(:user, password: 'abcdef')
     log_in(user,'abcdef')
   end
   
@@ -66,6 +67,4 @@ feature 'manage decks' do
       end
     end
   end
-  
-  #let(:another_user) { create(:user, password: 'abcdef') }
 end

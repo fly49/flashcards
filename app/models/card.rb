@@ -7,9 +7,9 @@ class Card < ApplicationRecord
   validate :texts_not_equal
   validate :has_one_deck_at_least
   
-  scope :ready, lambda { where("review_date <= ?", Date.today ) }
+  scope :ready, -> { where("review_date <= ?", Date.today ) }
 
-  before_create lambda { self.review_date = Date.today + 3 }
+  before_create -> { self.review_date = Date.today + 3 }
   
   mount_uploader :image, CardImageUploader
   

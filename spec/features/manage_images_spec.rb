@@ -4,7 +4,7 @@ require 'rails_helper'
 
 feature 'user can attach image to a card' do
   let(:user) { create(:user, password: 'abcdef') }
-    let(:card) { create(:card, user_id: user.id) }
+    let(:card) { create(:card, user: user) }
 
     before(:each) do
       log_in(user,'abcdef')
