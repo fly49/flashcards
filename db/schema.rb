@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_143553) do
+ActiveRecord::Schema.define(version: 2018_09_28_090804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(version: 2018_09_26_143553) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
+  create_table "cards_decks", id: false, force: :cascade do |t|
+    t.integer "card_id"
+    t.integer "deck_id"
+    t.index ["card_id", "deck_id"], name: "index_cards_decks_on_card_id_and_deck_id"
+  end
+
+  create_table "decks", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_decks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -35,9 +49,11 @@ ActiveRecord::Schema.define(version: 2018_09_26_143553) do
     t.string "salt"
     t.string "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.integer "current_deck_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
   end
 
   add_foreign_key "cards", "users"
+  add_foreign_key "decks", "users"
 end

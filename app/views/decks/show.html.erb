@@ -1,0 +1,6 @@
+<h1><%= "#{@deck.name} Deck" %></h1>
+<div class="container">
+  <div class="card-columns">
+    <%= render :partial => "cards/card", :collection => @cards %>
+  </div>
+</div>

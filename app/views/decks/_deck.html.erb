@@ -1,0 +1,15 @@
+<div class="custom-card" > 
+  <div class="card text-center" >
+    <div class="card-body">
+      <h5 class="card-title"><h3><%= link_to deck.name, deck_path(deck) %></h3></h5>
+      <p class="card-text"><%= "#{I18n.t('decks_controller.count')}: #{deck.cards.count}" %></p>
+      <% if deck.current? %>
+        <h6 class="card-subtitle mb-2 text-muted"><%= I18n.t('decks_controller.already_current') %></h6>
+      <% else %>
+        <%= button_to I18n.t('decks_controller.make_current'), make_current_deck_path(deck), method: :get, class: 'btn btn-primary'  %>
+        <%= button_to I18n.t('decks_controller.update'), edit_deck_path(deck), method: :get, class: 'btn btn-primary' %>
+        <%= button_to I18n.t('decks_controller.delete'), deck_path(deck), method: :delete, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -22,16 +22,15 @@
 en:
   simple_form:
     labels:
-      card:
-        defaults:
-          original_text: 'Original text'
-          translated_text: 'Translated text'
-          transcription: 'Transcription'
-      user:
-        defaults:
-          email: 'Email'
-          password: 'Password'
-          password_confirmation: 'Confirm your password'
+      defaults:
+        original_text: 'Original text'
+        translated_text: 'Translated text'
+        transcription: 'Transcription'
+        image: 'Attach an image to the card'
+        decks: 'Select at least one deck for the card'
+        email: 'Email'
+        password: 'Password'
+        password_confirmation: 'Confirm your password'
   helpers:
     submit:
       user:
@@ -42,6 +41,12 @@ en:
         update: 'Update Card'
       check_data:
         submit: 'Check translation'
+  deck:
+    flashes:
+        successfull:
+          create: 'Deck has been succesfully created!'
+          update: 'Deck renamed'
+          destroy: 'Deck deleted'
   card:
     flashes:
         successfull:
@@ -84,6 +89,14 @@ en:
     show:
       edit: 'Edit'
       delete: 'Delete'
+  decks_controller:
+    update: 'Rename'
+    delete: 'Delete'
+    make_current: 'Make Current'
+    already_current: 'Current'
+    index_title: 'All Decks'
+    new_title: 'Create Deck'
+    count: 'Number of Cards'
   session_controller:
     login:
       invite:
@@ -92,10 +105,11 @@ en:
   header:
     logo: 'FlashCarder'
     cards: 'Cards'
+    decks: 'Decks'
     add_card: 'Add Card'
     all_cards: 'All Cards'
+    create_deck: 'Create Deck'
+    all_decks: 'All Decks'
     account: 'Account'
     settings: 'Settings'
     log_out: 'Log out'
-      
-    

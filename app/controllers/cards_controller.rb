@@ -55,12 +55,10 @@ class CardsController < ApplicationController
 
   def card_params
     params.require(:card).permit(:original_text, :transcription, :translated_text,
-                                 :review_date, :image, :remove_image)
+                                 :review_date, :image, :remove_image, deck_ids:[])
   end
 
   def find_card
     @card = current_user.cards.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    redirect_back_or_to root_path
   end
 end

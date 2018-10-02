@@ -12,6 +12,7 @@ feature 'manage cards' do
       click_link 'Add Card'
       fill_in 'Original text', with: 'word'
       fill_in 'Translated text', with: 'translation'
+      page.check('Basic')
       click_button 'Create Card'
       expect(page).to have_content(I18n.t('card.flashes.successfull.create'))
       click_link 'Cards'
@@ -22,7 +23,7 @@ feature 'manage cards' do
 
   context 'check card' do
     let(:user) { create(:user, password: 'abcdef') }
-    let(:card) { create(:card, :old, user_id: user.id) }
+    let(:card) { create(:card, :old, user: user) }
     before(:each) do
       log_in(user,'abcdef')
       card
@@ -47,7 +48,7 @@ feature 'manage cards' do
 
   context 'manage specific card' do
     let(:user) { create(:user, password: 'abcdef') }
-    let(:card) { create(:card, user_id: user.id) }
+    let(:card) { create(:card, user: user) }
 
     before(:each) do
       log_in(user,'abcdef')

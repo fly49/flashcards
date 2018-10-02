@@ -2,7 +2,8 @@ FactoryBot.define do
   factory :card do
     original_text { random_text }
     translated_text { random_text }
-    user_id { nil }
+    user
+    decks { [user.current_deck] }
 
     trait :old do
       after(:create) do |instance|
