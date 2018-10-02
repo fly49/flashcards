@@ -102,7 +102,7 @@ describe Card do
   describe 'before_create' do
     let(:card) { create(:card, user: user) }
     it "sets review_date to the third day after today's" do
-      expect(card.review_date).to eq(Date.today + 3)
+      expect(card.review_date).to eq(Date.today)
     end
   end
 
