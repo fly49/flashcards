@@ -9,7 +9,7 @@ class Card < ApplicationRecord
   
   scope :ready, -> { where("review_date <= ?", Date.today ) }
 
-  before_create -> { self.review_date = Date.today + 3 }
+  before_create -> { self.review_date = Date.today }
   
   mount_uploader :image, CardImageUploader
   
