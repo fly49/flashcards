@@ -1,4 +1,6 @@
 class Card < ApplicationRecord
+  TIME_INTERVALS = [0, 1, 3, 7, 14, 28].freeze
+  
   belongs_to :user
   has_and_belongs_to_many :decks
   
@@ -24,7 +26,12 @@ class Card < ApplicationRecord
   end
   
   def check_translation(translation)
-    update_card_date if self.original_text == translation
+    if original_text == translation
+      self.successfull_attempts += 1
+      update_card_date
+    else
+      self.failed_attempts += 1
+    end
   end
   
   def texts_not_equal
@@ -34,6 +41,7 @@ class Card < ApplicationRecord
   end
   
   def update_card_date
-    self.update_attribute(:review_date, Date.today + 3)
+    self.successfull_attempts = 1 if self.failed_attempts == 3
+    self.update!(review_date: Date.today + TIME_INTERVALS[self.successfull_attempts])
   end
 end
