@@ -7,6 +7,6 @@ class HomeController < ApplicationController
     return unless current_user
 
     @user = User.find(current_user.id)
-    @random_card = @user.get_card_for_check
+    @random_card = @user.card_for_check
   end
 end
