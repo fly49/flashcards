@@ -26,18 +26,18 @@ class Card < ApplicationRecord
   end
 
   def check_translation(translation)
+    # if translation is correct
     if original_text == translation
-      self.successfull_attempts += 1
-      self.failed_attempts = 0
-      self.successfull_attempts = 5 if self.successfull_attempts > 5
+      evaluate_successfull_attempt
       update_card_date
     else
+      # Increase failed_attempts counter
       self.failed_attempts += 1
-      if self.failed_attempts >= 3
-        self.failed_attempts = 3
-        self.successfull_attempts = 1
+      # Check are there 3 failures
+      if failures_strike?
         update_card_date
       end
+      false
     end
   end
 
@@ -46,10 +46,32 @@ class Card < ApplicationRecord
       errors.add(:translated_text, I18n.t('card.errors.translation_error'))
     end
   end
-
+  
+  private
+  
+  def evaluate_successfull_attempt
+    # Increase successfull attempts counter
+    self.successfull_attempts += 1
+    # Reset failures counter
+    self.failed_attempts = 0
+    # successfull_attempts remains at maximum value if its exceed it
+    # to correspond maximal time interval 
+    self.successfull_attempts = 5 if self.successfull_attempts > 5
+  end
+  
+  def failures_strike?
+    # if counter reaches value of 3
+    false if self.failed_attempts <= 3
+    # failed_attempts remains at maximum value if its exceed it
+    self.failed_attempts = 3
+    # change time interval to the corresponding 1 succesful attempt
+    self.successfull_attempts = 1
+    true
+  end
+  
+  # Update card date according to the counters
+  # Each value of successfull_attempts counter correspond to specific time interval
   def update_card_date
-    p self.successfull_attempts
-    p self.failed_attempts
     update!(review_date: Date.today + TIME_INTERVALS[self.successfull_attempts])
   end
 end
