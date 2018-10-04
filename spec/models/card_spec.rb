@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Card do
   it { should belong_to(:user) }
-  
+
   let(:user) { create(:user, password: 'abcdef') }
 
   describe 'scope :ready' do
@@ -30,10 +30,39 @@ describe Card do
         expect(card.check_translation('abcd')).not_to be_truthy
       end
     end
+
+    context 'interval checking' do
+      it 'first successfull check increases review date by one day' do
+        expect { card.check_translation(card.original_text) }.to change { card.review_date }.to Date.today + 1
+      end
+
+      it 'second successfull check increases review date by 3 days' do
+        expect { 2.times { card.check_translation(card.original_text) } }.to change { card.review_date }.to Date.today + 3
+      end
+
+      it 'third successfull check increases review date by 7 days' do
+        expect { 3.times { card.check_translation(card.original_text) } }.to change { card.review_date }.to Date.today + 7
+      end
+
+      it 'fourth successfull check increases review date by 14 days' do
+        expect { 4.times { card.check_translation(card.original_text) } }.to change { card.review_date }.to Date.today + 14
+      end
+
+      it 'fifth successfull check increases review date by 28 days' do
+        expect { 5.times { card.check_translation(card.original_text) } }.to change { card.review_date }.to Date.today + 28
+      end
+
+      context 'rollback when to much fails' do
+        before { 3.times { card.check_translation(card.original_text) } }
+
+        it '3 failed checks in a row rollback review date to one day' do
+          expect { 3.times { card.check_translation('abcd') } }.to change { card.review_date }.to Date.today + 1
+        end
+      end
+    end
   end
 
   describe 'text vaildation' do
-    
     context 'presence vaildation' do
       context 'when texts are filled' do
         let(:correct_card) { create(:card, user: user) }
