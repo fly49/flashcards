@@ -33,8 +33,14 @@ class CardsController < ApplicationController
   end
 
   def check
-    if @card.check_translation(params[:check_data][:translation])
+    translation = params[:check_data][:translation]
+    @card.check_translation(translation)
+    if @card.check_distance.zero?
       flash[:success] = I18n.t('card.flashes.successfull.check')
+    elsif @card.check_distance <= 2
+      flash[:success] = I18n.t('card.check.almost')
+      flash[:notice] = "#{I18n.t('card.check.right_transl')}: #{@card.original_text}.
+                        #{I18n.t('card.check.you_wrote')}: #{translation}."
     else
       flash[:danger] = I18n.t('card.flashes.unsuccessfull.check')
     end
@@ -55,7 +61,7 @@ class CardsController < ApplicationController
 
   def card_params
     params.require(:card).permit(:original_text, :transcription, :translated_text,
-                                 :review_date, :image, :remove_image, deck_ids:[])
+                                 :review_date, :image, :remove_image, deck_ids: [])
   end
 
   def find_card

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'damerau-levenshtein'
+
 class Card < ApplicationRecord
   TIME_INTERVALS = [0, 1, 3, 7, 14, 28].freeze
 
@@ -25,19 +27,21 @@ class Card < ApplicationRecord
     order(Arel.sql('RANDOM()')).first
   end
 
+  # Updates card's check_distance to figure out is translation right or wrong
   def check_translation(translation)
-    # if translation is correct
-    if original_text == translation
+    # Initialize Damerau-Levenshtein algo handler
+    dl = DamerauLevenshtein
+    # Check is successfull if DL distance eq or more than two
+    check_distance(dl.distance(original_text, translation))
+    if check_distance <= 2
+      # Increase successfull_attempts counter
       evaluate_successfull_attempt
       update_card_date
     else
       # Increase failed_attempts counter
       self.failed_attempts += 1
-      # Check are there 3 failures
-      if failures_strike?
-        update_card_date
-      end
-      false
+      # Update card date if there are 3 failures
+      update_card_date if failures_strike?
     end
   end
 
@@ -46,19 +50,23 @@ class Card < ApplicationRecord
       errors.add(:translated_text, I18n.t('card.errors.translation_error'))
     end
   end
-  
+
+  def check_distance(data = nil)
+    data ? @check_distance = data : @check_distance
+  end
+
   private
-  
+
   def evaluate_successfull_attempt
     # Increase successfull attempts counter
     self.successfull_attempts += 1
     # Reset failures counter
     self.failed_attempts = 0
     # successfull_attempts remains at maximum value if its exceed it
-    # to correspond maximal time interval 
+    # to correspond maximal time interval
     self.successfull_attempts = 5 if self.successfull_attempts > 5
   end
-  
+
   def failures_strike?
     # if counter reaches value of 3
     false if self.failed_attempts <= 3
@@ -68,7 +76,7 @@ class Card < ApplicationRecord
     self.successfull_attempts = 1
     true
   end
-  
+
   # Update card date according to the counters
   # Each value of successfull_attempts counter correspond to specific time interval
   def update_card_date
