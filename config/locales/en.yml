@@ -48,6 +48,10 @@ en:
           update: 'Deck renamed'
           destroy: 'Deck deleted'
   card:
+    check:
+      almost: 'Almost!'
+      you_wrote: 'You wrote'
+      right_transl: 'Right translation'
     flashes:
         successfull:
           check: 'Right!'

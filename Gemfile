@@ -15,6 +15,7 @@ gem "mini_magick"
 gem "fog-aws"
 gem "figaro"
 gem 'travis'
+gem 'damerau-levenshtein'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

@@ -19,15 +19,22 @@ describe Card do
   end
 
   describe 'check_translation' do
-    let(:card) { create(:card, user: user) }
+    let(:card) { create(:card, original_text: 'original', user: user) }
 
     context 'compare original_text with the given one' do
-      it 'returns truthy when translation is right' do
-        expect(card.check_translation(card.original_text)).to be_truthy
+      context 'set check_distance to 0 if translation is absolutely right' do
+        before { card.check_translation(card.original_text) }
+        it { expect(card.check_distance).to eq 0 }
+      end
+      
+      context "check_distance is less or equals 2 if translation is almost right" do
+        before { card.check_translation('oregenal') }
+        it { expect(card.check_distance).to be <= 2 }
       end
 
-      it "returns falsey when it's wrong" do
-        expect(card.check_translation('abcd')).not_to be_truthy
+      context "check_distance is more than 2 if translation is wrong" do
+        before { card.check_translation('abcd') }
+        it { expect(card.check_distance).to be > 2 }
       end
     end
 
