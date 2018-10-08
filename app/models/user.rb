@@ -26,4 +26,14 @@ class User < ApplicationRecord
   def card_for_check
     current_deck.cards.ready.random
   end
+
+  def self.notify_cards
+    User.all.joins(:cards).where("review_date < ?", Date.today).uniq.each do |user|
+      CardsMailer.with(user: user).cards_notice
+    end
+  end
+  
+  def send_welcome_email
+    CardsMailer.with(user: self).welcome_email
+  end
 end

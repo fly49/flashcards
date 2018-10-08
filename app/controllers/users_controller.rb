@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.add_basic_deck
+      @user.send_welcome_email
       auto_login(@user)
       flash[:success] = I18n.t('user.flashes.successfull.create')
       redirect_to root_path

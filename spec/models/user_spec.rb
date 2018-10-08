@@ -4,6 +4,23 @@ require 'rails_helper'
 
 describe User do
   it { should have_many(:cards) }
+  
+  context 'sending emails' do
+    let(:user) { create(:user) }
+    
+    it 'should send welcome email' do
+      expect { user.send_welcome_email }
+        .to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+    
+    before do
+      create(:card, :old, user: user)
+    end
+    it 'should notify about expired cards' do
+      expect { User.notify_cards }
+        .to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
 
   describe 'text vaildation' do
     let(:user) { create(:user) }
