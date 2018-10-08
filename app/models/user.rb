@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   def self.notify_cards
     users_expired_cards.each do |user|
-      CardsMailer.with(user: user).cards_notice
+      CardsMailer.cards_notice(user).deliver_now
     end
   end
   
@@ -38,6 +38,6 @@ class User < ApplicationRecord
   end
   
   def send_welcome_email
-    CardsMailer.with(user: self).welcome_email
+    CardsMailer.welcome_email(self).deliver_now
   end
 end
