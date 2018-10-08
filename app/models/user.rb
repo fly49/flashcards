@@ -28,9 +28,13 @@ class User < ApplicationRecord
   end
 
   def self.notify_cards
-    User.all.joins(:cards).where("review_date < ?", Date.today).uniq.each do |user|
+    users_expired_cards.each do |user|
       CardsMailer.with(user: user).cards_notice
     end
+  end
+  
+  def self.users_expired_cards
+    User.joins(:cards).where("review_date < ?", Date.today).uniq
   end
   
   def send_welcome_email
