@@ -87,6 +87,7 @@ Rails.application.configure do
    :user_name            => ENV['gmail_username'],
    :password             => ENV['gmail_password'],
    :authentication       => 'login',
-   :enable_starttls_auto => true
+   :enable_starttls_auto => true,
+   :openssl_verify_mode  => 'none'
   }
 end
