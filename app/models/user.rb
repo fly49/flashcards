@@ -13,6 +13,8 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :current_deck, presence: true, on: :update
 
+  scope :users_expired_cards, -> { joins(:cards).where('review_date < ?', Date.today) }
+
   def downcase_email
     email&.downcase!
   end
@@ -25,5 +27,15 @@ class User < ApplicationRecord
 
   def card_for_check
     current_deck.cards.ready.random
+  end
+
+  def self.notify_cards
+    User.users_expired_cards.uniq.each do |user|
+      NotifyCardsJob.perform_later(user)
+    end
+  end
+
+  def send_welcome_email
+    CardsMailer.welcome_email(self).deliver_later
   end
 end

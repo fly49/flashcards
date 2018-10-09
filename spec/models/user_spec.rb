@@ -4,6 +4,24 @@ require 'rails_helper'
 
 describe User do
   it { should have_many(:cards) }
+  
+  context 'sending emails' do
+    let(:user) { create(:user) }
+    ActiveJob::Base.queue_adapter = :test
+    
+    it 'should send welcome email' do
+      expect { user.send_welcome_email }
+        .to have_enqueued_job.on_queue('mailers')
+    end
+    
+    before do
+      create(:card, :old, user: user)
+    end
+    it 'should notify about expired cards' do
+      expect { User.notify_cards }
+        .to have_enqueued_job.on_queue('default')
+    end
+  end
 
   describe 'text vaildation' do
     let(:user) { create(:user) }
