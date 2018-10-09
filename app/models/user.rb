@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   def self.notify_cards
     User.users_expired_cards.uniq.each do |user|
-      NotifyCardsJob.perform_later(user)
+      CardsMailer.welcome_email(user).deliver_later
     end
   end
 
