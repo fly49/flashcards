@@ -11,7 +11,7 @@ describe User do
     
     it 'should send welcome email' do
       expect { user.send_welcome_email }
-        .to have_enqueued_job.on_queue('default')
+        .to have_enqueued_job.on_queue('mailers')
     end
     
     before do

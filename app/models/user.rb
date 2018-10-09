@@ -31,11 +31,11 @@ class User < ApplicationRecord
 
   def self.notify_cards
     User.users_expired_cards.uniq.each do |user|
-      CardsMailer.welcome_email(user).deliver_later
+      NotifyCardsJob.perform_later(user)
     end
   end
 
   def send_welcome_email
-    SendWelcomeJob.set(wait: 20.seconds).perform_later(self)
+    CardsMailer.welcome_email(self).deliver_later
   end
 end

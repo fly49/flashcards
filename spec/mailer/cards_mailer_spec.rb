@@ -3,7 +3,7 @@ require 'rails_helper'
 describe CardsMailer, type: :mailer do
   describe 'welcome_email' do
     let(:user) { create(:user) }
-    let(:mail) { CardsMailer.welcome_email(user) }
+    let(:mail) { CardsMailer.welcome_email(user).deliver_now }
 
     it 'renders the subject' do
       expect(mail.subject).to eq('Welcome to Flashcarder')
