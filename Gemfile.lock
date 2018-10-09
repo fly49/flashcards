@@ -161,8 +161,6 @@ GEM
     highline (1.7.10)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
-    i18n-debug (1.1.1)
-      i18n (< 2)
     ipaddress (0.8.3)
     jaro_winkler (1.5.1)
     jbuilder (2.7.0)
@@ -372,7 +370,6 @@ DEPENDENCIES
   faker
   figaro
   fog-aws
-  i18n-debug
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick

@@ -39,7 +39,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   
-  ActionMailer::Base.default :from => Settings.default_email
   config.active_job.queue_adapter = :delayed_job
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
