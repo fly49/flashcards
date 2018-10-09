@@ -20,6 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  mailer:
+    welcome:
+      subject: 'Welcome to Flashcarder'
+    cards_notice:
+      subject: 'Unchecked cards notification'
   simple_form:
     labels:
       defaults:

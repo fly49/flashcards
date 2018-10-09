@@ -1,12 +1,13 @@
 class CardsMailer < ApplicationMailer
+  
   def welcome_email(user)
-    @url  = DEFAULT_URL
-    mail(to: user.email, subject: 'Welcome to Flashcarder')
+    @url  = Settings.application_url
+    mail(to: user.email, subject: I18n.t('mailer.welcome.subject'))
   end
   
   def cards_notice(user)
     @cards_count = user.cards.ready.count
-    @url  = DEFAULT_URL
-    mail(to: user.email, subject: 'Unchecked cards notification')
+    @url  = Settings.application_url
+    mail(to: user.email, subject: I18n.t('mailer.cards_notice.subject'))
   end
 end

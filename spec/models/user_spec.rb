@@ -7,10 +7,11 @@ describe User do
   
   context 'sending emails' do
     let(:user) { create(:user) }
+    ActiveJob::Base.queue_adapter = :test
     
     it 'should send welcome email' do
       expect { user.send_welcome_email }
-        .to change { ActionMailer::Base.deliveries.count }.by(1)
+        .to have_enqueued_job.on_queue('default')
     end
     
     before do
@@ -18,7 +19,7 @@ describe User do
     end
     it 'should notify about expired cards' do
       expect { User.notify_cards }
-        .to change { ActionMailer::Base.deliveries.count }.by(1)
+        .to have_enqueued_job.on_queue('default')
     end
   end
 
