@@ -17,6 +17,7 @@ gem 'travis'
 gem 'damerau-levenshtein'
 gem 'delayed_job_active_record'
 gem 'config'
+gem 'whenever', require: false
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

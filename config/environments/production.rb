@@ -85,7 +85,7 @@ Rails.application.configure do
     :user_name => ENV['sendgrid_username'],
     :password => ENV['sendgrid_password'],
     :address => 'smtp.sendgrid.net',
-    :domain => 'flymyflashcards.herokuapp.com',
+    :domain => Settings.application_url,
     :port => 587,
     :authentication => :plain,
     :enable_starttls_auto => true
