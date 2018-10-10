@@ -9,11 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.settings = { locale: 
-      http_accept_language.compatible_language_from(I18n.available_locales) }
-    if @user.save
-      @user.add_basic_deck
-      @user.send_welcome_email
+    if RegisterUserService.register_user(@user, proper_locale)
       auto_login(@user)
       flash[:success] = I18n.t('user.flashes.successfull.create')
       redirect_to root_path

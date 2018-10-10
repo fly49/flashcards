@@ -34,8 +34,4 @@ class User < ApplicationRecord
       NotifyCardsJob.perform_later(user)
     end
   end
-
-  def send_welcome_email
-    CardsMailer.welcome_email(self).deliver_later
-  end
 end
