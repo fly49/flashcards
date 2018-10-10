@@ -36,6 +36,7 @@ en:
         email: 'Email'
         password: 'Password'
         password_confirmation: 'Confirm your password'
+        locale: 'Language'
   helpers:
     submit:
       user:
@@ -46,6 +47,8 @@ en:
         update: 'Update Card'
       check_data:
         submit: 'Check translation'
+      session:
+        submit: 'Log In'
   deck:
     flashes:
         successfull:

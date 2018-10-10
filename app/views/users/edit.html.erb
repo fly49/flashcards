@@ -3,6 +3,9 @@
   <div class="col-md-6 col-md-offset-3">
     <%= simple_form_for current_user, defaults: { required: false } do |f| %>
       <%= f.input :email %>
+      <%= f.simple_fields_for :settings do |ff| %>
+        <%= ff.input :locale, collection: I18n.available_locales %>
+      <% end %>
       <%= f.input :password %>
       <%= f.input :password_confirmation %>
       <%= f.button :submit, class: 'btn btn-primary' %>

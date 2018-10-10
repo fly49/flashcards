@@ -4,7 +4,7 @@ require 'rails_helper'
 
 feature 'Authentication' do
   before(:each) { visit root_path }
-
+  
   context 'sign up' do
     let(:user) { build(:user) }
 
@@ -41,6 +41,15 @@ feature 'Authentication' do
       click_link 'Log out'
       expect(page).to have_selector(:link_or_button, 'Log In')
       expect(page).not_to have_content(user.email)
+    end
+  end
+  
+  context 'change language' do
+    let(:user) { build(:user) }
+
+    scenario 'successfull language change' do
+      click_link 'Russian'
+      expect(page).to have_content('Добро пожаловать во Флешкардер!')
     end
   end
 end

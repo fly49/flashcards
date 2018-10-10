@@ -1,0 +1,108 @@
+ru:
+  mailer:
+    welcome:
+      subject: 'Добро пожаловать во Флешкардер!'
+    cards_notice:
+      subject: 'Уведомление о непрочитанных карточках'
+  simple_form:
+    labels:
+      defaults:
+        original_text: 'Оригинал'
+        translated_text: 'Перевод'
+        transcription: 'Транскрипция'
+        image: 'Прикрепить изображение к карточке'
+        decks: 'Выберите хотя бы одну колоду для карточки'
+        email: 'Адрес электронной почты'
+        password: 'Пароль'
+        password_confirmation: 'Подтвердите пароль'
+        remember_me: 'Запомнить меня'
+        locale: 'Язык'
+  helpers:
+    submit:
+      user:
+        create: 'Создать аккаунт'
+        update: 'Обновить данные пользователя'
+      card:
+        new: 'Создать карточку'
+        update: 'Обновить карточку'
+      check_data:
+        submit: 'Проверить перевод'
+      session:
+        submit: 'Войти'
+  deck:
+    flashes:
+        successfull:
+          create: 'Колода успешно создана!'
+          update: 'Колода переименована'
+          destroy: 'Колода удалена'
+  card:
+    check:
+      almost: 'Почти!'
+      you_wrote: 'Вы ввели'
+      right_transl: 'Правильный вариант'
+    flashes:
+        successfull:
+          check: 'Верно!'
+          update: 'Карточка обновлена!'
+          create: 'Карточка добавлена!'
+          destroy: 'Карточка удалена'
+        unsuccessfull:
+          check: 'Неверно!'
+    errors:
+      translation_error: "не может быть таким же как оригинал"
+  user:
+    flashes:
+        successfull:
+          update: 'Пользователь обновлён!'
+          create: 'Добро пожаловать!'
+  session:
+    flashes:
+      successfull:
+        create: 'С возвращением!'
+      unsuccessfull:
+        create: 'Неверно имя или пароль'
+  app_controller:
+    not_authenticated: 'Вы должны авторизоваться чтобы увидеть эту страницу'
+  users_controller:
+    new:
+      title: 'Зарегистрироваться'
+    update:
+      title: 'Редактировать'
+  home_controller:
+    index:
+      greeting:
+        p1: 'Добро пожаловать во Флешкардер!'
+        p2: 'Давайте выучим новые слова!'
+      end_message: 'Проверены все карточки'
+  cards_controller:
+    update_title: 'Редактировать'
+    index_title: 'Все карточки'
+    new_title: 'Добавить карточку'
+    show:
+      edit: 'Реактировать'
+      delete: 'Удалить'
+  decks_controller:
+    update: 'Переименовать'
+    delete: 'Удалить'
+    make_current: 'Сделать текущей'
+    already_current: 'Текущая'
+    index_title: 'Все колоды'
+    new_title: 'Создать колоду'
+    count: 'Количество карточек'
+  session_controller:
+    login:
+      invite:
+       p1: "Нет аккаунта?"
+       p2: 'Зарегистрируйтесь!'
+  header:
+    logo: 'Флэшкардер'
+    cards: 'Карточки'
+    decks: 'Колоды'
+    add_card: 'Добавить карточку'
+    all_cards: 'Все карточки'
+    create_deck: 'Создать колоду'
+    all_decks: 'Все колоды'
+    account: 'Аккаунт'
+    settings: 'Настройки'
+    log_out: 'Выйти'
+    
