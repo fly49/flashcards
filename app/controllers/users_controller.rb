@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.settings = { locale: 
+      http_accept_language.compatible_language_from(I18n.available_locales) }
     if @user.save
       @user.add_basic_deck
       @user.send_welcome_email
@@ -33,7 +35,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :settings => ['locale'])
   end
 
   def find_user
