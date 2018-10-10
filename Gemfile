@@ -18,6 +18,7 @@ gem 'damerau-levenshtein'
 gem 'delayed_job_active_record'
 gem 'config'
 gem 'whenever', require: false
+gem 'http_accept_language'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

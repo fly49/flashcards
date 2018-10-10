@@ -4,10 +4,10 @@
 
     <%= f.input :email %>
     <%= f.input :password %>
-    <%= f.input :remember_me, :as => :boolean %>
+    <%= f.input :remember_me, as: :boolean %>
 
     <div class="form-actions">
-    <%= f.submit "Log In", :class => 'btn btn-primary' %>
+    <%= f.submit :class => 'btn btn-primary' %>
     </div>
 <% end %>
 <p><%= I18n.t('session_controller.login.invite.p1') %> <%= link_to I18n.t('session_controller.login.invite.p2'), signup_path %> </p>

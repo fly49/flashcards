@@ -16,4 +16,13 @@ feature 'user can change his email and password' do
     expect(page).to have_content(I18n.t('user.flashes.successfull.update'))
     expect(page).to have_content('new@mail.com')
   end
+  
+  scenario 'user change account language successfully' do
+    log_in(user,'abcdef')
+    click_link 'Account'
+    click_link 'Settings'
+    select 'ru', from: 'Language'
+    click_button 'Update User'
+    expect(page).to have_content('Добро пожаловать во Флешкардер!')
+  end
 end
