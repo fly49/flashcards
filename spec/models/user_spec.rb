@@ -9,11 +9,6 @@ describe User do
     let(:user) { create(:user) }
     ActiveJob::Base.queue_adapter = :test
     
-    it 'should send welcome email' do
-      expect { user.send_welcome_email }
-        .to have_enqueued_job.on_queue('mailers')
-    end
-    
     before do
       create(:card, :old, user: user)
     end
