@@ -31,7 +31,7 @@ feature 'manage cards' do
     end
 
     scenario 'card should be checked successfully' do
-      fill_in 'Translation', with: card.original_text
+      fill_in 'check_data_translation', with: card.original_text
       click_button 'Check'
       expect(page).to have_content(I18n.t('card.flashes.successfull.check'))
       expect(page).to have_content('All cards have been viewed')
@@ -39,7 +39,7 @@ feature 'manage cards' do
 
     scenario "card shouldn't been checked" do
       within('form') do
-        fill_in 'Translation', with: 'abracadabra'
+        fill_in 'check_data_translation', with: 'abracadabra'
       end
       click_button 'Check'
       expect(page).to have_content(I18n.t('card.flashes.unsuccessfull.check'))

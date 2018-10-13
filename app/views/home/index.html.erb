@@ -1,27 +1,22 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12 text-center">
-      <h1 class="mt-5"><%= I18n.t('home_controller.index.greeting.p1') %></h1>
-      <p class="lead"><%= I18n.t('home_controller.index.greeting.p2') %></p>
-      <% if current_user %>
-        <div class="card" >
-          <div class="card-body">
-            <% if @random_card %>
-              <%= show_cards_image(@random_card) %>
-              <h5 class="card-title"><h3><%= @random_card.translated_text %></h3></h5>
-              <%= simple_form_for :check_data, url: check_card_path(@random_card), method: :get, wrapper: :inline_form, html: { class: "form-inline" } do |f| %>
-                  <%= f.input :translation, input_html: { class: "mr-sm-2" }, required: false %>
-                  <%= f.button :submit, class: 'btn btn-primary' %>
-              <% end %>
-              <h6 class="card-subtitle mb-2 text-muted"><%= @random_card.review_date.strftime("%d/%m/%Y") %></h6>
-            <% else %>
-              <h4><%= I18n.t('home_controller.index.end_message') %></h4>
-            <% end %>
-          </div>
-        </div>
+<h1 class="display-4"><%= "#{I18n.t('home_controller.index.greeting.p1')} #{I18n.t('logo')}" %></h1>
+<p class="lead"><%= I18n.t('home_controller.index.greeting.p2') %></p>
+<hr class="my-4">
+<% if current_user %>
+  <div class="card text-center center_div" style="width: 400px; margin: auto;" >
+    <div class="card-body">
+      <% if @random_card %>
+        <%= show_cards_image(@random_card) %>
+        <h5 class="card-title"><h3><%= @random_card.translated_text %></h3></h5>
+        <%= simple_form_for :check_data, url: check_card_path(@random_card), method: :get do |f| %>
+            <%= f.input :translation, label: false, required: false %>
+            <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end %>
+        <h6 class="card-subtitle mb-2 text-muted"><%= @random_card.review_date.strftime("%d/%m/%Y") %></h6>
       <% else %>
-        <%= render template: 'sessions/new' %>
+        <h4><%= I18n.t('home_controller.index.end_message') %></h4>
       <% end %>
     </div>
   </div>
-</div>
+<% else %>
+  <%= render template: 'sessions/new' %>
+<% end %>

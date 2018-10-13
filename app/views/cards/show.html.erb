@@ -1,5 +1,18 @@
-<%= render partial: 'card_content', locals: {card: @card} %>
-<div class="modal-footer">
-  <%= button_to I18n.t('cards_controller.show.edit'), edit_card_path(@card), method: :get, class: 'btn btn-primary'  %>
-  <%= button_to I18n.t('cards_controller.show.delete'), card_path(@card), method: :delete, class: 'btn btn-primary' %>
+<div class="container center_div" style= "width: 400px">
+<div class="card" >
+  <div class="card-body">
+    <%= render partial: 'card_content', locals: {card: @card} %>
+    <div class="card-footer">
+      <div class="btn-group">
+
+          <%= button_to I18n.t('cards_controller.show.edit'), edit_card_path(@card), method: :get, class: 'btn btn-primary'  %>
+
+
+          <%= button_to I18n.t('cards_controller.show.delete'), card_path(@card), method: :delete, class: 'btn btn-primary' %>
+
+      </div>
+    </div>
+
+  </div>
+</div>
 </div>

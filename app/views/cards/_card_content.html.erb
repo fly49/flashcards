@@ -1,9 +1,5 @@
-<div class="card text-center" >
-  <div class="card-body">
-    <%= show_cards_image(card) %>
-    <h5 class="card-title"><h3><%= card.original_text %></h3></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= card.transcription %></h6>
-    <p class="card-text"><%= card.translated_text %></p>
-    <h6 class="card-subtitle mb-2 text-muted"><%= card.review_date.strftime("%d/%m/%Y") %></h6>
-  </div>
-</div>
+<%= image_tag(card.image.url, class: "card-image") if card.image? %>
+<h5 class="card-title"><h3><%= card.original_text %></h3></h5>
+<h6 class="card-subtitle mb-2 text-muted"><%= card.transcription %></h6>
+<p class="card-text"><%= card.translated_text %></p>
+<h6 class="card-subtitle mb-2 text-muted"><%= card.review_date.strftime("%d/%m/%Y") %></h6>

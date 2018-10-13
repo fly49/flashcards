@@ -1,3 +1,7 @@
-<a href= <%= card_path(card) %> class="custom-card" > 
-  <%= render partial: 'cards/card_content', locals: {card: card} %>
+<a href= <%= card_path(card) %> class="custom-card">
+  <div class="card text-center" >
+    <div class="card-body">
+      <%= render partial: 'cards/card_content', locals: {card: card} %>
+    </div>
+  </div>
 </a>
