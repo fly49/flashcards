@@ -1,36 +1,97 @@
-#container {
-  margin: 48px auto;
-  width: 960px;
-}
-
-#container > section {
-  clear: both;
-}
-
-#container > header {
-  margin-bottom: 46px;
-}
-
-#container > header > h1 {
+/* Navigation bar */
+#logo {
   float: left;
-  margin: 0;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
 }
-
-.navigation-links {
-  float: right;
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
 }
-
-.navigation-links li {
-  display: inline-block;
-  margin: 0 16px;
+.navbar { 
+  margin-bottom: 25px;
 }
-
-/* MISC */
-
-.clearfix:after {content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;} html[xmlns].clearfix{display:block;} * html .clearfix{height:1%;}
-
+.navbar-nav .nav-link {
+  color: #fff;
+}
+/* Buttons */
+.btn-primary {
+  background: #772064;
+  color: #ffffff;
+  border-radius: 10px;
+  border: 0px solid transparent;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+  background: #99267f;
+}
+/* Center in container */
+.center_div{
+  margin: 0 auto;
+}
+/* Background */
+body, html {
+    background-image: asset-url('background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+/* Cards */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50px ;
+}
+.card-image {
+    border-radius: 50px;
+}
+.card-footer {
+  background: 0;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: -25px;
+  border-top: 0;
+}
 /* For cards wrap */
 a.custom-card,
 a.custom-card:hover {
   color: inherit;
 }
+/* Jumbo */
+.jumbotron {
+  background: rgba(204, 204, 204, 0.75);
+  border-radius: 100px ;
+}
+/* Buttons */
+.btn-group .btn {
+    margin-right: 5px;
+}
+/* Links */
+a {
+  color: #772064;
+}
+a:hover {
+  color: #99267f;
+}
+/* Alerts */
+.alert {
+  opacity: 0.8;
+  text-align: center;
+  border-radius: 10px;
+}
+.alert-success {
+  background: #07E877;
+}
+.alert-danger {
+  background: #e02a55;
+  color: #fff;
+}
+/* MISC */
+
+.clearfix:after {content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;} html[xmlns].clearfix{display:block;} * html .clearfix{height:1%;}
+
+

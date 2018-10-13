@@ -49,7 +49,7 @@ feature 'Authentication' do
 
     scenario 'successfull language change' do
       click_link 'Russian'
-      expect(page).to have_content('Добро пожаловать во Флешкардер!')
+      expect(page).to have_content('Добро пожаловать во Flashcarder')
     end
   end
 end

@@ -28,7 +28,7 @@ class CardImageUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-  process resize_to_fit: [360, 360]
+  process resize_to_fit: [280, 280]
   
   def extension_whitelist
      %w(jpg jpeg gif png)

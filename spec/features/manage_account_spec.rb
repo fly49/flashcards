@@ -23,6 +23,6 @@ feature 'user can change his email and password' do
     click_link 'Settings'
     select 'ru', from: 'Language'
     click_button 'Update User'
-    expect(page).to have_content('Добро пожаловать во Флешкардер!')
+    expect(page).to have_content('Добро пожаловать во Flashcarder')
   end
 end
