@@ -18,6 +18,7 @@ describe CardsMailer, type: :mailer do
     end
   end
   
+  # Notification about expired cards
   describe 'cards_notice' do
     let(:user) { create(:user) }
     let(:mail) { CardsMailer.cards_notice(user).deliver_now }
