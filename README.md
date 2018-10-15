@@ -8,8 +8,8 @@ There are some key features:
 
 * Create as many cards as you want, organize them into decks.
 
-* Embedded SuperMemo algo provides efficency in learning words, just checking their translation on the main page.
-
 * Scheduled mailing notifications about cards that were expired and need to be learned.
+
+* Embedded SuperMemo algo provides efficency in learning words, just checking their translation on the main page. SuperMemo is about periods of repetions in learning something, based on successful and unsuccessful attempts. To learn more, check out [this](https://www.supermemo.com/english/ol/sm2.htm).
 
 [Link to deployed app](https://flymyflashcards.herokuapp.com/)
