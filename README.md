@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/a749838199000b2c0fb8/maintainability)](https://codeclimate.com/github/fly49/flashcards/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a749838199000b2c0fb8/test_coverage)](https://codeclimate.com/github/fly49/flashcards/test_coverage)
 
-This is my pet-application that allows to create flashcards for leraning words. 
+This is my pet-application that allows to create flashcards for learning words. 
 There are some key features:
 
 * Create as many cards as you want, organize them into decks.
